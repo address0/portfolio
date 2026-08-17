@@ -2,7 +2,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen scroll-mt-16 flex items-center justify-center bg-[#03194A] text-white"
+      className="min-h-[calc(100svh-4rem)] scroll-mt-16 snap-start flex items-center justify-center"
     >
       <h2 className="text-4xl font-bold">Contact</h2>
     </section>

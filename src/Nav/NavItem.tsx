@@ -4,9 +4,10 @@ import { useScroll } from '../Main/ScrollContext'
 type NavItemProps = {
   sectionId: string
   children: ReactNode
+  light: boolean
 }
 
-function NavItem({ sectionId, children }: NavItemProps) {
+function NavItem({ sectionId, children, light }: NavItemProps) {
   const { activeSection, scrollTo } = useScroll()
   const isActive = activeSection === sectionId
 
@@ -20,8 +21,12 @@ function NavItem({ sectionId, children }: NavItemProps) {
       className={[
         'mx-4 h-full flex items-center transition-colors duration-200',
         isActive
-          ? 'text-white font-semibold border-b-2 border-blue-500'
-          : 'text-white/60 hover:text-white',
+          ? light
+            ? 'text-[#020D24] font-semibold border-b-2 border-blue-500'
+            : 'text-white font-semibold border-b-2 border-blue-500'
+          : light
+            ? 'text-[#020D24]/60 hover:text-[#020D24]'
+            : 'text-white/60 hover:text-white',
       ].join(' ')}
     >
       {children}

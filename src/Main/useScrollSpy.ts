@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
-export function useScrollSpy(sectionIds: string[]) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0])
+export function useScrollSpy(sectionIds: string[], initialSection: string) {
+  const [activeSection, setActiveSection] = useState(initialSection)
+  const sectionIdsKey = sectionIds.join(',')
 
   useEffect(() => {
     const sections = sectionIds
@@ -29,7 +30,7 @@ export function useScrollSpy(sectionIds: string[]) {
     sections.forEach((section) => observer.observe(section))
 
     return () => observer.disconnect()
-  }, [sectionIds])
+  }, [sectionIdsKey])
 
   return activeSection
 }

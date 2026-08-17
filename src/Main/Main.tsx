@@ -19,24 +19,35 @@ export const SECTION_IDS = [
 ] as const
 
 function Main() {
-  const activeSection = useScrollSpy([...SECTION_IDS])
+  const initialHash = window.location.hash.slice(1)
+  const initialSection = SECTION_IDS.includes(
+    initialHash as (typeof SECTION_IDS)[number],
+  )
+    ? initialHash
+    : SECTION_IDS[0]
+  const activeSection = useScrollSpy([...SECTION_IDS], initialSection)
 
   const scrollTo = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
-    window.history.replaceState(null, '', `#${sectionId}`)
   }
 
   useEffect(() => {
-    const hash = window.location.hash.slice(1)
-    if (hash && SECTION_IDS.includes(hash as (typeof SECTION_IDS)[number])) {
-      requestAnimationFrame(() => scrollTo(hash))
+    if (initialSection !== SECTION_IDS[0]) {
+      requestAnimationFrame(() => scrollTo(initialSection))
     }
   }, [])
+
+  useEffect(() => {
+    const nextHash = `#${activeSection}`
+    if (window.location.hash !== nextHash) {
+      window.history.replaceState(null, '', nextHash)
+    }
+  }, [activeSection])
 
   return (
     <ScrollProvider activeSection={activeSection} scrollTo={scrollTo}>
       <Nav />
-      <main>
+      <main className="pt-16">
         <Intro />
         <About />
         <Experience />

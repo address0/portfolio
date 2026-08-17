@@ -47,7 +47,7 @@ function Main() {
   return (
     <ScrollProvider activeSection={activeSection} scrollTo={scrollTo}>
       <Nav />
-      <main className="pt-16">
+      <main className="pt-16 gowun-dodum-regular">
         <Intro />
         <About />
         <Experience />

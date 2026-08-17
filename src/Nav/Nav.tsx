@@ -27,12 +27,12 @@ function Nav() {
     <div
       className={`fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between px-10 transition-colors duration-300 ${navStyle.background} ${navStyle.light ? 'text-[#020D24]' : 'text-white'}`}
     >
-      <div className="flex items-center">
+      <div className="flex items-center gowun-dodum-regular">
         <div className="text-xl font-bold">
           <h1>SOYEONG JOO</h1>
         </div>
       </div>
-      <div className="w-1/2 h-full flex items-center justify-between">
+      <div className="w-1/2 h-full flex items-center justify-between gowun-dodum-regular">
         {NAV_ITEMS.map(({ sectionId, label }) => (
           <NavItem key={sectionId} sectionId={sectionId} light={navStyle.light}>
             {label}
